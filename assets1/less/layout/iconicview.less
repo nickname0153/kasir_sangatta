@@ -1,0 +1,99 @@
+/*-- 5.2 Iconic Left Nav / .iconic-view .left-aside --*/
+
+@import "../variables.less";
+@import "../mixins.less";
+.iconic-view .left-aside {
+    width: @IconicViewWidth;
+    .transition(.1s, ease-out);
+    .left-navigation {
+        li {
+            position: relative;
+        }
+        & > ul {
+            & > li {
+                .nav-label {
+                    display: none;
+                }
+                > a {
+                    padding: 0px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                  .label{
+                    position: absolute;
+                    left: 4px;
+                    top: 4px;
+                  }
+                }
+                .nav-icon {
+                    padding: 0px;
+                    width: @IconicViewWidth;
+                    height: @IconicViewWidth;
+                    display: block;
+                    line-height: @IconicViewWidth;
+                    text-align: center;
+                    font-size: 18px;
+                    .transition(.1s, ease-out);
+                    i {
+                        position: relative;
+                        left: -3px;
+                    }
+                }
+            }
+        }
+        .list-accordion ul {
+            display: none;
+            width: 200px;
+            background-color: @IconicDropdownBg;
+            position: absolute;
+            top: 0px;
+            left: @IconicViewWidth;
+            border-left: none;
+            margin-left: 0px;
+            ul {
+                position: relative;
+                left: 0px;
+                border-bottom: rgba(000, 000, 000, .1) 1px solid;
+                background-color: rgba(000, 000, 000, .05);
+            }
+        }
+    }
+}
+
+.iconic-view {
+    .page-content {
+        margin-left: @IconicViewWidth;
+    }
+    .list-accordion {
+        &> li {
+            & > a {
+                .dcjq-icon {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.dcjq-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 14px;
+    top: 16px;
+}
+
+.dcjq-icon:after {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    right: -6px;
+}
+
+.dcjq-parent.active .dcjq-icon:after {
+    content: "\f107";
+    font-family: 'FontAwesome';
+}

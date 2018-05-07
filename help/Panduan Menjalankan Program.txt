@@ -1,0 +1,31 @@
+NAMA : Sistem Informasi Penjualan Minimarket Berbasis Web dengan PHP dan MySQL
+
+Software POS (Point of Sale ), yaitu aplikasi untuk Komputer Kasir pada Minimarket dan Toko Ritel.
+
+Yang harus diinstal :
+1. Xampp 1.8x yang dapat di-Download dari www.apachefriends.org
+2. Dreamweaver atau Notepadd++ jika berminat untuk memodifikasi bagian program
+
+Menginstal Program
+1. Ekstrak paket program-toko-minimarket.zip menjadi folder minimarket
+2. Setelah XAMPP diinstal, kopikan program ke dalam C:\xampp\htdocs, sehingga punya folder C:\xampp\htdocs\minimarket\
+3. Siap dijalankan
+
+Menginstal Database
+1. Jalankan XAMPP Control Panel dari icon desktop, lalu Klik Start pada Apache dan MySQL
+2. Buka browser IE/ Chrome, lalu Buka alamat http://localhost/phpmyadmin/
+3. Klik menu Database, lalu buat database baru bernama toko_minimarketdb
+4. Klik nama database toko_minimarketdb yang tadi dibuat, lalu klik menu IMPORT
+5. Dari halaman Import, klik tombol Browse, lalu cari file toko_minimarketdb.sql yang Kami kirim
+6. Klik Go, maka databaes akan tercipta
+
+Menjalankan programnya 
+1. Buka browser IE atau Chrome
+2. Buka alamat http://localhost/minimarket/   ( nama folder di dalam HTDOCS )
+3. Login menggunakan 
+- User : admin
+- Password : admin
+- Level : admin
+4. Siap digunakan
+
+Semoga bermanfaat
