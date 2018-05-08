@@ -515,7 +515,7 @@ while($tmpData = mysql_fetch_array($tmpQry)) {
 		if ($bacaData['kd_pelanggan'] == $dataPelanggan) {
 			$cek = " selected";
 		} else { $cek=""; }
-		$code = $bacaData['kd_pelanggan']." - ".$bacaData['no_anggota']." - ";
+		$code = $bacaData['no_anggota']." - ";
 		echo "<option value='$bacaData[kd_pelanggan]' $cek>$code $bacaData[nm_pelanggan]</option>";
 	  }
 	  ?>
