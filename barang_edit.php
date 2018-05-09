@@ -24,7 +24,7 @@ if(isset($_POST['btnSimpan'])){
 	$txtStokOpname		= $_POST['txtStokOpname'];	
 	$txtStokMin			= $_POST['txtStokMin'];	
 	$txtStokMax			= $_POST['txtStokMax'];	
-	
+	$txtHargaMember			= $_POST['txtHargaMember'];
 	// Menghilangkan tanda petik pada teks masukan
 	$txtBarcode 		= str_replace("'","&acute;",$txtBarcode);
 	$txtNama 			= str_replace("'","&acute;",$txtNama);

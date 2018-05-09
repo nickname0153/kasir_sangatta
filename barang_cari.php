@@ -64,7 +64,7 @@ if($aksesData['mu_data_barang'] == "Yes") { ?>
               $pages = ceil($total/$halaman); 
               
               $mySql = "SELECT barang.* FROM barang LEFT JOIN jenis ON barang.kd_jenis=jenis.kd_jenis
-                    WHERE barcode LIKE '%$katakunci%' OR nm_barang LIKE '%$katakunci%' ORDER BY barang.nm_barang, barang.barcode  LIMIT $mulai, $halaman";
+                    WHERE kd_barang LIKE '%$katakunci%' OR barcode LIKE '%$katakunci%' OR nm_barang LIKE '%$katakunci%' ORDER BY barang.nm_barang, barang.barcode  LIMIT $mulai, $halaman";
               $myQry = mysql_query($mySql, $koneksidb)  or die ("Query salah : ".mysql_error());
               
               //tambahan edi

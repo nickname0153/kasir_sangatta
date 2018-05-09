@@ -506,7 +506,7 @@ while($tmpData = mysql_fetch_array($tmpQry)) {
 										<div class="form-group">
 											<label class="col-lg-4 control-label">Pelanggan</label>
 											<div class="col-lg-6">
-												<select name="cmbPelanggan" id="cmbPelanggan" class="form-control select2" onchange="edit_harga()">
+												<select name="cmbPelanggan" id="cmbPelanggan" class="form-control select2" onchange="javascript:edit_harga()">
         <option value="Kosong">....</option>
         <?php
 	  $bacaSql = "SELECT * FROM pelanggan ORDER BY kd_pelanggan";
