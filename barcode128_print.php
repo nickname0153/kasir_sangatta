@@ -1,7 +1,8 @@
 <?php
 include_once "library/inc.connection.php";
 include_once "library/inc.library.php";
-include_once "library/bar128.php";
+//include_once "library/bar128.php";
+include_once "library/tekskegambar.php";
 
 $Kode  = isset($_GET['Kode']) ?  $_GET['Kode'] : ''; 
 $mySql = "SELECT * FROM barang WHERE kd_barang='$Kode'";
@@ -30,15 +31,24 @@ body {
   <tr>
     <td width="201" align="center" valign="top">
 	<?php 
-		if($myData['barcode'] !="") {
+		if($myData['barcode'] !="") { 
+		    //$img = New TeksKeGambar;
 			  echo $myData['nm_barang'];
 			  echo "<br>Rp. ". format_angka($myData['harga_jual']);
-			  if($myData['diskon'] >=1) {
-				echo " disc : ". $myData['diskon']."%";
-			  }
-			  echo bar128(stripslashes($myData['barcode'])); 
-		} 
-	?></td>
+			 // if($myData['diskon'] >=1) {
+				//echo " disc : ". $myData['diskon']."%";
+			 // }
+			 //echo bar128(stripslashes($myData['barcode'])); 
+			 //simpanKePng('hasil-convert','gambar/');
+			 //$img->buatGambar($text);
+			 //$image = $img->tampilkanGambar();
+			?>
+			<img src="library/barbar.php?text=<?php echo $myData['barcode']?>&print=true" alt="testing" />
+		<?php } 
+
+	?>
+		
+	</td>
   </tr>
 </table>
 </body>

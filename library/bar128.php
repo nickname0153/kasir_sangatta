@@ -18,6 +18,9 @@ div.b128{
 </style>
 
 <?php
+//header('Content-Type: image/png');
+//header('Content-Disposition: inline; filename="barcode.png"');
+// Draw (or save) the image into PNG format.
 global $char128asc,$char128charWidth;
 $char128asc=' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~';					
 $char128wid = array(
@@ -47,7 +50,7 @@ function bar128($text) {						// Part 1, make list of widths
 	 					 						//Part 2, Write rows
   $html="<table cellpadding=0 cellspacing=0><tr>";				
   for($x=0;$x<strlen($w);$x+=2)   						// code 128 widths: black border, then white space
-	$html .= "<td><div class=\"b128\" style=\"border-left-width:{$w[$x]};width:{$w[$x+1]}\"></div>";	
+	$html .= "<td><div class=\"b128\" style=\"border-left-width:{$w[$x]};width:{$w[$x+1]}\"></div>";
   return "$html<tr><td  colspan=".strlen($w)." align=center><font family=arial size=2><b>$text</table>";		
 }
 ?>
