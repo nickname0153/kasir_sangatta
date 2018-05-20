@@ -35,6 +35,7 @@ if(isset($_POST['btnTambah'])){
 	$txtJumlah		= $_POST['txtJumlah'];
 	$diskon 		= $_POST['txtDisc'];
 	$dp 			= $_POST['dp'];
+	
 			
 	# Validasi Kotak isi Form
 	$pesanError = array();
@@ -112,6 +113,7 @@ if(isset($_POST['btnSimpan'])){
 	$cmbSupplier	= $_POST['cmbSupplier'];
 	$txtKeterangan	= $_POST['txtKeterangan'];
 	$dp 			= $_POST['dp'];
+	$txtTempo 		= $_POST['txtTempo'];
 	
 	# Validasi Kotak isi Form
 	$pesanError = array();
@@ -151,7 +153,8 @@ if(isset($_POST['btnSimpan'])){
 						kd_supplier='$cmbSupplier', 
 						keterangan='$txtKeterangan',
 						dp='$dp', 
-						kd_user='$kodeUser'";
+						kd_user='$kodeUser',
+						tgl_tempo='".InggrisTgl($txtTempo)."'";
 		mysql_query($mySql, $koneksidb) or die ("Gagal query".mysql_error());
 		
 		# …LANJUTAN, SIMPAN DATA
@@ -231,6 +234,7 @@ else {
 # TAMPILKAN DATA KE FORM
 $noTransaksi 	= buatKode("pembelian", "BL");
 $tglTransaksi 	= isset($_POST['txtTanggal']) ? $_POST['txtTanggal'] : date('d-m-Y');
+$tglTempo 		= isset($_POST['txtTempo']) ? $_POST['txtTempo'] : '';
 $dataSupplier	= isset($_POST['cmbSupplier']) ? $_POST['cmbSupplier'] : '';
 $dataKeterangan	= isset($_POST['txtKeterangan']) ? $_POST['txtKeterangan'] : '';
 $dataKategori	= isset($_POST['cmbKategori']) ? $_POST['cmbKategori'] : '';
@@ -328,6 +332,12 @@ jQuery(".form-control").keyup(function (event) {
 													<option value="Cash">Cash</option>
 													<option value="Kredit">Kredit</option>
 												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-4 control-label">Tgl. Jatuh Tempo (Diisi Jika Ket Kredit)</label>
+											<div class="col-lg-8">
+												<input name="txtTempo" type="text" id="tgl" class="form-control" value="<?php echo $tglTempo; ?>" size="20" maxlength="20" placeholder="Hari-Bulan-Tahun (30-12-2018)" />
 											</div>
 										</div>
 								</div>

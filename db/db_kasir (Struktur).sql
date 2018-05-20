@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 04:59 PM
+-- Generation Time: May 20, 2018 at 02:05 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -166,7 +166,8 @@ CREATE TABLE `pembelian` (
   `kd_supplier` char(4) NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `dp` int(11) NOT NULL,
-  `kd_user` char(3) NOT NULL
+  `kd_user` char(3) NOT NULL,
+  `tgl_tempo` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -605,12 +606,12 @@ ALTER TABLE `tmp_login`
 -- AUTO_INCREMENT for table `tmp_pembelian`
 --
 ALTER TABLE `tmp_pembelian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tmp_penjualan`
 --
 ALTER TABLE `tmp_penjualan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=417;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
 --
 -- AUTO_INCREMENT for table `tmp_returbeli`
 --

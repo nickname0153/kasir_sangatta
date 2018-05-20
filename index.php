@@ -82,12 +82,58 @@ date_default_timezone_set("Asia/Makassar");
             <div class="row">
                 <div class="col-md-2">
                     <div class="clearfix top-bar-action">
-                        <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
                         <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
                         <span onclick="window.location='?open=Logout'" class="rightbar-action waves-effect"><i class="glyphicon glyphicon-off"></i></span>
                     </div>
                 </div>
                 <div class="col-md-2 responsive-fix top-right">
+                <div class="notification-nav">
+                        <ul class="clearfix">
+                            <li class="dropdown"><a href="#" data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i><span class="alert-bubble">
+                                <?php
+                                    $qr = "SELECT COUNT(*) as total1 FROM `barang` WHERE stok + stok_opname <= stok_minimal + 20";
+                                    $qe = mysql_query($qr, $koneksidb);
+                                    $fetch = mysql_fetch_array($qe);
+                                    $stok = $fetch['total1'];
+                                    $qr1 = "SELECT COUNT(*) as total2 FROM pembelian WHERE DATE(NOW()) <= `tgl_tempo`";
+                                    $qe1 = mysql_query($qr1, $koneksidb);
+                                    $fetch1 = mysql_fetch_array($qe1);
+                                    $tempo = $fetch1['total2'];
+                                    echo $total = $stok + $tempo;
+                                ?>
+                            </span></a>
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp">
+                                <div class="notification-wrap">
+                                    <h4>Anda mempunyai <?=$stok?> notifikasi baru</h4>
+                                    <ul>
+                                    <?php
+                                        $sql1 = "SELECT * FROM barang WHERE stok <= stok_minimal";
+                                        $myQuery = mysql_query($sql1, $koneksidb);
+                                        while ($data = mysql_fetch_array($myQuery)) { ?>
+                                        <li><a href="#" class="clearfix"><span class="ni w-green"></span><span class="notification-message">Barang <?=$data['nm_barang']?> <?=$data['stok']?> Hampir Mendekati Stok Minimal yaitu <?=$data['stok_minimal']?></span></a>
+                                        </li>
+                                        <?php }
+                                        $sql2 = "SELECT * FROM pembelian WHERE DATE(NOW()) <= `tgl_tempo`";
+                                        $myQuery1 = mysql_query($sql2, $koneksidb);
+                                        while ($data1 = mysql_fetch_array($myQuery1)) { ?>
+                                        <li><a href="#" class="clearfix"><span class="ni w-orange"></span><span class="notification-message">No Pembelian <?=$data1['no_pembelian']?>, Pembelian Tanggal <?=$data1['tgl_pembelian']?>, Akan Jatuh Tempo 
+                                        <?php 
+                                            $tanggal1 = new DateTime($data1['tgl_tempo']);
+                                            $tanggal2 = new DateTime();
+                                            $perbedaan = $tanggal2->diff($tanggal1)->format("%a");
+                                            echo $perbedaan;
+                                        ?> Hari</span></a>
+                                        </li>
+                                        <?php }
+
+                                         ?>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-4 responsive-fix">
                 <div style="padding-top:20px; padding-left:110px; font-size:14px; font-weight:bold;">
