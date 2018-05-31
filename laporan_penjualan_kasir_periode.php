@@ -13,11 +13,11 @@ $tglAkhir	= "";
 # Membaca tanggal dari form, jika belum di-POST formnya, maka diisi dengan tanggal sekarang
 $tglAwal 	= isset($_POST['txtTglAwal']) ? $_POST['txtTglAwal'] : "01-".date('m-Y');
 $tglAkhir 	= isset($_POST['txtTglAkhir']) ? $_POST['txtTglAkhir'] : date('d-m-Y');
-
+$kasir    = $_POST['kasir'];
 // Jika tombol filter tanggal (Tampilkan) diklik
 if (isset($_POST['btnTampil'])) {
 	// Membuat sub SQL filter data berdasarkan 2 tanggal (periode)
-	$filterPeriode = "WHERE p.keterangan = 'Cash' OR p.keterangan = 'Kredit' AND ( p.tgl_penjualan BETWEEN '".InggrisTgl($tglAwal)."' AND '".InggrisTgl($tglAkhir)."' )";
+	$filterPeriode = "WHERE ( p.tgl_penjualan BETWEEN '".InggrisTgl($tglAwal)."' AND '".InggrisTgl($tglAkhir)."' ) AND p.kd_user = '".$kasir."'";
 }
 
 
@@ -88,8 +88,22 @@ $max	 = ceil($jml/$row);
       <div class="col-md-4"> 
         <div class="input-daterange input-group">
             <input type="text" class="form-control" value="<?php echo $tglAwal; ?>" name="txtTglAwal"/>
-                  <span class="input-group-addon">s/d</span>
-                  <input type="text" name="txtTglAkhir" class="form-control" value="<?php echo $tglAkhir; ?>"  />
+            <span class="input-group-addon">s/d</span>
+            <input type="text" name="txtTglAkhir" class="form-control" value="<?php echo $tglAkhir; ?>"  />
+        </div>
+      </div>
+    <div class="col-lg-1"><strong>Kasir </strong></div>
+      <div class="col-md-4"> 
+        <div class="input-daterange input-group">
+            <select name="kasir" class="form-control">
+              <?php
+              $sqal = "SELECT * FROM user";
+              $quare = mysql_query($sqal, $koneksidb);
+              while ($data = mysql_fetch_array($quare)) { ?>
+                <option value="<?=$data['kd_user']?>"><?=$data['nm_user']?></option>
+              <?php }
+              ?>
+            </select>
         </div>
       </div>
         <input name="btnTampil" class="btn btn-success" type="submit" value=" Tampilkan " />        
@@ -126,7 +140,7 @@ $max	 = ceil($jml/$row);
   <?php
   
   # Perintah untuk menampilkan data Rawat dengan filter Periode
-  $mySql = "SELECT p.*, u.nm_user, p.tgl_penjualan, 
+ $mySql = "SELECT p.*, u.nm_user, p.tgl_penjualan, 
             SUM(b.harga_jual * pi.jumlah) as maho,
             SUM((b.harga_jual - (b.harga_jual * b.diskon/100)) * pi.jumlah) as odore
             FROM penjualan as p LEFT JOIN user u ON p.kd_user = u.kd_user
